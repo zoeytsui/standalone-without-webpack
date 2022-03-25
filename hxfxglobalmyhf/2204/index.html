@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script type="text/javascript" src="https://images.hxfxglobal.com/scripts/function.js"></script>
+  <script type="text/javascript" src="https://images.hxfxglobal.com/scripts/chat.js"></script>
+  <script type="text/javascript" src="../analytics.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+  <link rel="stylesheet" href="css/common.min.css">
+</head>
+
+<body>
+  <div id="hd-box" v-cloak>
+    <div class="bg" :class="lang">
+      <!-- nav -->
+      <nav class="navbar" id="navbar">
+        <a class="navbar-toggler"><i class="fa fa-bars fa-2x"></i></a>
+        <a @click="goHXFX('index')" class="navbar-brand"><img src="./img/general/logo.png" alt="HXFX Malaysia" /></a>
+        <div class="navbar-collapse">
+          <ul class="navbar-nav">
+            <li class="nav-item" v-for="li in t.nav">
+              <a class="nav-link text" @click="goHXFX(li.page)">{{li.name.toUpperCase()}}</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- banner -->
+      <div class="banner"></div>
+
+      <div class="mainBlock">
+        <button @click="goOpenAccount()" class="btn btn-yellow">{{t.openAccountBtn.toUpperCase()}}</button>
+
+        <main>
+          <!-- s1 -->
+          <section class="why">
+            <div class="title" v-html="t.why.title.toUpperCase()"></div>
+            <div class="content">
+              <p class="text" v-for="x in t.why.content" v-html="x"></p>
+            </div>
+          </section>
+
+          <button @click="chat.cs()" class="btn btn-yellow">{{t.moreDetailBtn.toUpperCase()}}</button>
+
+          <div class="expand"> </div>
+
+          <!-- s2 -->
+          <section class="steps">
+            <div class="title pc" v-html="t.steps.title.toUpperCase()"></div>
+            <div class="title m" v-html="t.steps.titlem.toUpperCase()"></div>
+            <div class="content">
+              <div class="block" v-for="(x,i) in t.steps.list">
+                <div class="stepBlock">
+                  <div class="imgBlock">
+                    <img class="img" :src="`./img/general/img${i+1}.png`" alt="x" />
+                    <img class="img-hover" :src="`./img/general/imgh${i+1}.png`" alt="x" />
+                  </div>
+                  <p class="text pc">● {{x}}</p>
+                  <p class="text m">{{x}}</p>
+                </div>
+              </div>
+          </section>
+
+          <div class="expand2"> </div>
+
+          <!-- s3 -->
+          <section class="trade">
+            <div class="title" v-html="t.trade.title.toUpperCase()"></div>
+            <div class="content">
+              <div class="list">
+                <ul>
+                  <li class="text" v-for="li in t.trade.list">{{li}}</li>
+                </ul>
+                <button @click="goDownloadApp()"
+                  class="btn btn-yellow downloadBtn">{{t.downloadBtn.toUpperCase()}}</button>
+              </div>
+              <div class="phone">
+                <img class="pc" src="./img/general/phone.png" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Swiper -->
+          <div class="awards">
+            <div class="swiper awardSwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="./img/awards/best_the_golden.png" />
+                  <!-- <p><small>{{t.awards[0]}}</small></p> -->
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/awards/stevie_winner_2017.png" />
+                  <!-- <p><small>{{t.awards[1]}}</small></p> -->
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/awards/best_financial.png" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/awards/best_foreign.png" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/awards/most_growth_brokers.png" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/awards/most_foreign.png" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/awards/best_mobile.png" />
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+
+    <!-- risk Warning -->
+    <section class="riskWarning text">
+      <div class="content">{{t.riskWarning}}</div>
+    </section>
+
+    <!-- bottom -->
+    <section class="bottom">
+      <button @click="chat.cs()" class="btn btn-orange">{{t.bottom[0].toUpperCase()}}</button>
+      <button @click="goDownloadApp()" class="btn btn-blue downloadBtn">{{t.bottom[1].toUpperCase()}}</button>
+    </section>
+
+  </div>
+
+</body>
+
+
+</html>
